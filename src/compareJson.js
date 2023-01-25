@@ -4,6 +4,7 @@ const mapping = {
     3: ' ', // значения есть в обоих файлах && равны
 }
 
+// функция принимает на вход 2 json-объекта
 const compareJson = (obj1, obj2) => {
 
     // создаем ентрис из объектов, для корректной сортировки добавляем вторым значением
@@ -33,4 +34,4 @@ const compareJson = (obj1, obj2) => {
     return JSON.stringify(entries)
 };
 
-export default {compareJson}
+export default compareJson;
