@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import compareJson from '../src/compareJson';
+// import compareJson from '../src/compareJson';
 
 const genDiff = new Command();
 
