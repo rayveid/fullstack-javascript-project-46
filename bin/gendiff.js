@@ -1,19 +1,18 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import compareJson from '../src/compareJson.js';
-import parseJson from '../src/parseJson.js';
+import parse from '../src/parsers.js';
 
 const genDiff = new Command();
 
 // функция для поиска отличий
 const findDiff = (filepath1, filepath2) => {
-    // console.log('Filepaths: ',filepath1, filepath2)
 
-    const json1 = parseJson(filepath1);
-    const json2 = parseJson(filepath2);
-    const diff = compareJson(json1, json2);
+    const data1 = parse(filepath1);
+    const data2 = parse(filepath2);
 
-    console.log(JSON.parse(diff));
+    const diff = compareJson(data1, data2);
+    console.log(diff);
 }
 
 genDiff
