@@ -21,3 +21,4 @@ rules:
     - error
     - single
     - { 'avoidEscape': true, 'allowTemplateLiterals': false }
+  no-restricted-syntax: off
