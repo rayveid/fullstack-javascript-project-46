@@ -24,6 +24,6 @@ program
     .action(genDiff);
 
 // запуск программы
-program.parse();
+program.parse(process.argv);
 
 export default genDiff;
