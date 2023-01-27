@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { program } from 'commander';
-import gendiff from '../src/gendiff.js';
+import module from '../src/module.js';
 
 program
     .name('gendiff')
@@ -10,7 +10,7 @@ program
     .option('-f, --format <type>', 'output format') // опция для выбора формата вывода
     .action((filepath1, filepath2, options) => {
         const { format } = options;
-        const result = gendiff(filepath1, filepath2, format);
+        const result = module(filepath1, filepath2, format);
         console.log(result);
     })
     .parse() // запуск программы

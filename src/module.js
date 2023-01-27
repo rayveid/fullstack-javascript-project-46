@@ -3,12 +3,12 @@ import makeMap from './utils/makeMap.js';
 import renderPlain from './formatters/renderPlain.js';
 import render from './formatters/render.js';
 
-const gendiff = (filepath1, filepath2, format = 'stylish') => {
+const module = (filepath1, filepath2, format = 'stylish') => {
   const data1 = parse(filepath1);
   const data2 = parse(filepath2);
 
   const equalityMap = makeMap(data1, data2);
-  let formatted = '';
+  let formatted;
 
   switch (format) {
     case 'plain':
@@ -25,4 +25,4 @@ const gendiff = (filepath1, filepath2, format = 'stylish') => {
   return formatted;
 }
 
-export default gendiff;
+export default module;
