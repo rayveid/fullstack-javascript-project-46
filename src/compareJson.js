@@ -9,10 +9,11 @@ const compareJson = (obj1, obj2, format = 'stylish') => {
     switch (format) {
         case 'plain':
             return renderPlain(equalityMap, obj1, obj2);
+        case 'json':
+            return JSON.stringify(equalityMap);
         default:
-            return render(equalityMap, obj1, obj2)
+            return render(equalityMap, obj1, obj2);
     }
-
 };
 
 export default compareJson;
