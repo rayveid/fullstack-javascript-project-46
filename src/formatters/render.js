@@ -18,7 +18,7 @@ const stringify = (value, replacer = ' ', spacesCount = 2, depth = 1) => {
     return ['{', ...result, `${bracketSpaces}}`].join('\n'); // формируем и возращаем итоговую строку
 }
 
-const renderMap = (map, obj1, obj2, depth = 1) => {
+const render = (map, obj1, obj2, depth = 1) => {
     const spaces = (' ').repeat(2*(depth)); // 4 - 5 - 6
     const brackets = (' ').repeat(2*(depth - 1));
 
@@ -29,7 +29,7 @@ const renderMap = (map, obj1, obj2, depth = 1) => {
         .reduce((acc, [key, value]) => {
 
             if (!Array.isArray(value)) { // рекурсивная логика
-                const arrValue = renderMap(map[key], obj1[key], obj2[key], depth + 2);
+                const arrValue = render(map[key], obj1[key], obj2[key], depth + 2);
                 return [...acc, `${spaces}  ${key}: ${arrValue}`]
             }
 
@@ -61,4 +61,4 @@ const renderMap = (map, obj1, obj2, depth = 1) => {
     return ['{', ...mapEntry, `${brackets}}`].join('\n');
 }
 
-export default renderMap;
+export default render;
