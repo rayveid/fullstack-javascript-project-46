@@ -3,7 +3,7 @@ import makeMap from './makeMap.js'
 import renderPlain from './formatters/renderPlain.js';
 
 // функция принимает на вход 2 json-объекта
-const compareJson = (obj1, obj2, format = 'schema') => {
+const compareJson = (obj1, obj2, format = 'stylish') => {
     const equalityMap = makeMap(obj1, obj2);
 
     switch (format) {
