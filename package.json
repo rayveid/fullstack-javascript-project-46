@@ -2,14 +2,14 @@
   "name": "@hexlet/code",
   "version": "0.0.1",
   "description": "[![Actions Status](https://github.com/rayveid/fullstack-javascript-project-46/workflows/hexlet-check/badge.svg)](https://github.com/rayveid/fullstack-javascript-project-46/actions)",
-  "main": "gendiff.js",
+  "main": "src/gendiff.js",
   "type": "module",
   "bin": {
-    "gendiff": "gendiff.js"
+    "cli": "bin/cli.js"
   },
   "scripts": {
-    "run": "node gendiff.js",
-    "run:help": "node gendiff.js -h",
+    "run": "node bin/cli.js",
+    "run:help": "node bin/cli.js -h",
     "test": "jest"
   },
   "repository": {
