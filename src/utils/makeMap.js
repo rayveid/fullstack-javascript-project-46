@@ -1,50 +1,46 @@
 const checkEquality = (key, value, secondObj) => {
-  if (!Object.hasOwn(secondObj, key)) return 'Only first'; // возвращаем 1, т.к. ключ есть только в первом объекте
-  if (secondObj[key] === value) return 'Equal values'; // возвращаем 0, т.к. ключ-значение полностью равны
-  if (typeof value === 'object' && typeof secondObj[key] === 'object') return 'Object values'; //
+  // возвращаем 1, т.к. ключ есть только в первом объекте
+  if (!Object.hasOwn(secondObj, key)) return 'Only first';
+
+  // возвращаем 0, т.к. ключ-значение полностью равны
+  if (secondObj[key] === value) return 'Equal values';
+  if (typeof value === 'object' && typeof secondObj[key] === 'object')
+    return 'Object values'; //
 
   return 'Not equal values';
 };
 
 const makeMap = (obj1, obj2) => {
-  let equalityMap = {};
-  let newValue;
-
   // строим карту сравнения по первому объекту
-  for (const [key, value] of Object.entries(obj1)) {
+  const equalityMap = Object.entries(obj1).reduce((acc, [key, value]) => {
     const equality = checkEquality(key, value, obj2);
 
     switch (equality) {
-    case 'Only first':
-      newValue = {[key]: [1]};
-      equalityMap = {...equalityMap, ...newValue}; // только в первом
-      break;
-    case 'Equal values':
-      newValue = {[key]: [0]};
-      equalityMap = {...equalityMap, ...newValue}; // одинаковые
-      break;
-    case 'Not equal values':
-      newValue = {[key]: [1,2]};
-      equalityMap = {...equalityMap, ...newValue}; // разные значения
-      break;
-    case 'Object values':
-      newValue = {[key]: makeMap(obj1[key], obj2[key])};
-      equalityMap = {...equalityMap, ...newValue};
-      break;
-    default:
-      break;
+      case 'Only first':
+        return { ...acc, ...{ [key]: [1] } }; // только в первом
+      case 'Equal values':
+        return { ...acc, ...{ [key]: [0] } }; // одинаковые
+      case 'Not equal values':
+        return { ...acc, ...{ [key]: [1, 2] } }; // разные значения
+      case 'Object values': // для объектов рекурсивно вызываем построение карты
+        return { ...acc, ...{ [key]: makeMap(obj1[key], obj2[key]) } };
+      default:
+        throw new Error('Unknown equality');
     }
-  }
+  }, {});
+
+  // собираем оставшиеся ключи
+  const leftKeys = Object.keys(obj2).reduce((acc, key) => {
+    if (!Object.hasOwn(equalityMap, key)) {
+      // если в текущей карте нет ключа,
+      return { ...acc, [key]: [2] }; // значит добавляем его с параметров 2
+    }
+
+    return acc; // если нет, возвращаем в текущем виде
+  }, {});
 
   // собираем оставшиеся ключи из второго объекта
-  for (const key of Object.keys(obj2)) {
-    if (!Object.hasOwn(equalityMap, key)) {
-      equalityMap = {...equalityMap, [key]: [2]}; // только во втором
-    }
-  }
-  // console.log('Non final:')
-  // console.log(equalityMap)
-  return equalityMap;
+  return { ...equalityMap, ...leftKeys };
 };
 
 export default makeMap;

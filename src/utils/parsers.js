@@ -13,7 +13,8 @@ const parse = (filename) => {
 
   // возвращаем данные из файла в нужном формате
   if (ext === '.json') return JSON.parse(data);
-  if (ext === '.yaml' || ext === '.yml') return parseYml.load(data, {json: true});
+  if (ext === '.yaml' || ext === '.yml')
+    return parseYml.load(data, { json: true });
 
   return 'Unknown file format';
 };

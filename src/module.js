@@ -8,21 +8,15 @@ const module = (filepath1, filepath2, format = 'stylish') => {
   const data2 = parse(filepath2);
 
   const equalityMap = makeMap(data1, data2);
-  let formatted;
 
   switch (format) {
-  case 'plain':
-    formatted = renderPlain(equalityMap, data1, data2);
-    break;
-  case 'json':
-    formatted = JSON.stringify(equalityMap);
-    break;
-  default:
-    formatted =  render(equalityMap, data1, data2);
-    break;
+    case 'plain':
+      return renderPlain(equalityMap, data1, data2);
+    case 'json':
+      return JSON.stringify(equalityMap);
+    default:
+      return render(equalityMap, data1, data2);
   }
-
-  return formatted;
 };
 
 export default module;

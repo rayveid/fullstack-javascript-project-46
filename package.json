@@ -62,5 +62,6 @@
       "fp/no-unused-expression": "error",
       "fp/no-valueof-field": "error",
       "no-var": "error"
-    }}
+    }
+  }
 }
