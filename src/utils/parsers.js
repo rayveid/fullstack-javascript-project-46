@@ -5,17 +5,17 @@ import * as fs from 'fs';
 import * as parseYml from 'js-yaml';
 
 const parse = (filename) => {
-    const ext = path.extname(filename); // расширение файла
-    const currentDir = process.cwd(); // текущая папка
+  const ext = path.extname(filename); // расширение файла
+  const currentDir = process.cwd(); // текущая папка
 
-    const filepath = path.resolve(currentDir, '__fixtures__', filename);
-    const data = fs.readFileSync(filepath, 'utf8'); // читаем файл
+  const filepath = path.resolve(currentDir, '__fixtures__', filename);
+  const data = fs.readFileSync(filepath, 'utf8'); // читаем файл
 
-    // возвращаем данные из файла в нужном формате
-    if (ext === '.json') return JSON.parse(data);
-    if (ext === '.yaml' || ext === '.yml') return parseYml.load(data, {json: true});
+  // возвращаем данные из файла в нужном формате
+  if (ext === '.json') return JSON.parse(data);
+  if (ext === '.yaml' || ext === '.yml') return parseYml.load(data, {json: true});
 
-    return 'Unknown file format';
+  return 'Unknown file format';
 }
 
 export default parse;

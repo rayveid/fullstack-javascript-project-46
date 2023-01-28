@@ -22,3 +22,5 @@ rules:
     - single
     - { 'avoidEscape': true, 'allowTemplateLiterals': false }
   no-restricted-syntax: off
+  indent: [warn, 2]
+  space-infix-ops: warn

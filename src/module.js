@@ -11,15 +11,15 @@ const module = (filepath1, filepath2, format = 'stylish') => {
   let formatted;
 
   switch (format) {
-    case 'plain':
-      formatted = renderPlain(equalityMap, data1, data2);
-      break;
-    case 'json':
-      formatted = JSON.stringify(equalityMap);
-      break;
-    default:
-      formatted =  render(equalityMap, data1, data2);
-      break;
+  case 'plain':
+    formatted = renderPlain(equalityMap, data1, data2);
+    break;
+  case 'json':
+    formatted = JSON.stringify(equalityMap);
+    break;
+  default:
+    formatted =  render(equalityMap, data1, data2);
+    break;
   }
 
   return formatted;
