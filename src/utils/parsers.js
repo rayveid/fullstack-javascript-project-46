@@ -16,6 +16,6 @@ const parse = (filename) => {
   if (ext === '.yaml' || ext === '.yml') return parseYml.load(data, {json: true});
 
   return 'Unknown file format';
-}
+};
 
 export default parse;

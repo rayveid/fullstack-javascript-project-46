@@ -27,17 +27,15 @@ const render = (map, obj1, obj2, depth = 1) => {
     .entries(map)
     .sort() // сортируем, т.к. итоговый результат должен быть отсортирован
     .reduce((acc, [key, value]) => {
-
       if (!Array.isArray(value)) { // рекурсивная логика
         const arrValue = render(map[key], obj1[key], obj2[key], depth + 2);
-        return [...acc, `${spaces}  ${key}: ${arrValue}`]
+        return [...acc, `${spaces}  ${key}: ${arrValue}`];
       }
 
       let newValue = [];
       let strValue;
 
       for (const valueKey of value) { // проходимся по каждому значению из карты
-
         switch (valueKey) {
         case 1: // берем значение из первого объекта
           strValue = stringify(obj1[key], ' ', 2, depth + 1);
@@ -56,9 +54,9 @@ const render = (map, obj1, obj2, depth = 1) => {
         }
       }
       return [...acc, ...newValue];
-    }, [])
+    }, []);
 
   return ['{', ...mapEntry, `${brackets}}`].join('\n');
-}
+};
 
 export default render;

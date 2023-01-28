@@ -1,5 +1,4 @@
 const getString = (path, action, value1 = '', value2 = '') => {
-
   const toString = (value) => {
     const type = typeof value;
 
@@ -8,7 +7,7 @@ const getString = (path, action, value1 = '', value2 = '') => {
     if (type === 'object') return '[complex value]';
 
     return value.toString();
-  }
+  };
 
   const strValue1 = toString(value1);
   const strValue2 = toString(value2);
@@ -23,14 +22,13 @@ const getString = (path, action, value1 = '', value2 = '') => {
   default:
     return 'Unknown action';
   }
-}
+};
 
 const renderPlain = (map, obj1, obj2, path = '') => {
-
   const mapEntry = Object.entries(map)
     .sort()
     .reduce((acc, [key, value]) => {
-      const currPath = `${path}${key}`
+      const currPath = `${path}${key}`;
 
       if (!Array.isArray(value)) { // рекурсивная логика для вложенных объектов
         const arrValue = renderPlain(map[key], obj1[key], obj2[key], `${currPath}.`);
@@ -38,21 +36,20 @@ const renderPlain = (map, obj1, obj2, path = '') => {
       }
 
       // дальше необходимо проанализировать значение массива, если значения у ключа 2 - ключ был обновлен
-      if (value.length === 2) return [...acc, getString(currPath, 'updated', obj1[key], obj2[key])]
+      if (value.length === 2) return [...acc, getString(currPath, 'updated', obj1[key], obj2[key])];
 
       // если 1 - то 3 варианта - одинаковые значения (скипаем), удален или добавлен
       switch(value[0]) {
       case 1:
-        return [...acc, getString(currPath, 'removed')]
+        return [...acc, getString(currPath, 'removed')];
       case 2:
-        return [...acc, getString(currPath, 'added', obj2[1], obj2[key])]
+        return [...acc, getString(currPath, 'added', obj2[1], obj2[key])];
       default:
         return [...acc];
       }
-
     }, []);
 
   return mapEntry.join('\n');
-}
+};
 
 export default renderPlain;

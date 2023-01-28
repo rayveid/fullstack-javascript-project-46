@@ -23,6 +23,6 @@ const module = (filepath1, filepath2, format = 'stylish') => {
   }
 
   return formatted;
-}
+};
 
 export default module;

@@ -21,6 +21,10 @@ rules:
     - error
     - single
     - { 'avoidEscape': true, 'allowTemplateLiterals': false }
-  no-restricted-syntax: off
+  no-restricted-syntax: warn
   indent: [warn, 2]
   space-infix-ops: warn
+  padded-blocks: warn
+  semi: warn
+
+
