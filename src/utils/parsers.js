@@ -12,9 +12,12 @@ const parse = (filename) => {
   const data = fs.readFileSync(filepath, 'utf8'); // читаем файл
 
   // возвращаем данные из файла в нужном формате
-  if (ext === '.json') return JSON.parse(data);
-  if (ext === '.yaml' || ext === '.yml')
+  if (ext === '.json') {
+    return JSON.parse(data);
+  }
+  if (ext === '.yaml' || ext === '.yml') {
     return parseYml.load(data, { json: true });
+  }
 
   return 'Unknown file format';
 };

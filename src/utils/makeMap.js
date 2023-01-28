@@ -1,11 +1,14 @@
 const checkEquality = (key, value, secondObj) => {
-  // возвращаем 1, т.к. ключ есть только в первом объекте
+  // Возвращаем 1, т.к. ключ есть только в первом объекте
   if (!Object.hasOwn(secondObj, key)) return 'Only first';
 
   // возвращаем 0, т.к. ключ-значение полностью равны
-  if (secondObj[key] === value) return 'Equal values';
-  if (typeof value === 'object' && typeof secondObj[key] === 'object')
+  if (secondObj[key] === value) {
+    return 'Equal values';
+  }
+  if (typeof value === 'object' && typeof secondObj[key] === 'object') {
     return 'Object values'; //
+  }
 
   return 'Not equal values';
 };

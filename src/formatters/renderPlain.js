@@ -44,8 +44,9 @@ const renderPlain = (map, obj1, obj2, path = '') => {
 
     // дальше необходимо проанализировать значение массива,
     // если значения у ключа 2 - ключ был обновлен
-    if (value.length === 2)
+    if (value.length === 2) {
       return [...acc, getString(currPath, 'updated', obj1[key], obj2[key])];
+    }
 
     // если 1 - то 3 варианта - одинаковые значения (скипаем), удален или добавлен
     switch (value[0]) {
