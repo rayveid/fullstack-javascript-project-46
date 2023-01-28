@@ -3,3 +3,6 @@ install: # разворачивание и запуск
 
 lint: # запуск линтера
 	npx eslint .
+
+publish:
+	npm publish --dry-run
